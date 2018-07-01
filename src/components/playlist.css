@@ -1,0 +1,47 @@
+ul{
+    list-style-type: none;
+}
+
+li:hover{
+    color: red;
+}
+
+.active{
+    color: red;
+}
+
+.player-progress-container {
+    position: relative;
+
+    width: 365px;
+    height: 9px;
+    margin: 0 auto;
+
+    background-color: #414141;
+    border-radius: 40px;
+}
+
+.player-progress-value {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    background-color: #CDD2D8;
+    border-radius: 40px;
+
+}
+
+player-progress-value:after {
+     position: absolute;
+     top: -3px;
+     right: -6px;
+     content: '';
+
+     width: 15px;
+     height: 15px;
+
+     border-radius: 50%;
+     background-color: #7748B5;
+     box-shadow: rgba(0,0,0,.2) 0 0 5px 2px;
+ }
