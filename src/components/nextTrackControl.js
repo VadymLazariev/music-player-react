@@ -7,7 +7,7 @@ export default class NextTrackControl extends Component{
 
     render(){
         return(
-            <button onClick={this.props.next}>next</button>
+            <button className={`btn btn-default`} onClick={this.props.next}>next</button>
         );
     }
 }

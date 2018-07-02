@@ -7,7 +7,7 @@ export default class RepeatControl extends Component{
 
     render(){
         return(
-            <button onClick={this.props.repeat}>repeat</button>
+            <button className={`btn btn-default`} onClick={this.props.repeat}>repeat</button>
         );
     }
 }

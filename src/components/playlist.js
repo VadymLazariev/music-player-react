@@ -8,11 +8,14 @@ export default class Playlist extends Component{
         return(
             this.props.tracks.map((track,index) => (
                 isActive = (this.props.currentTrackId === index),
-                <ul>
-                    <li onClick={ () => {this.props.playSong(index)}} key={track.id}  className={ `${isActive? "active" : ' '}`}>
-                        <span>{track.artist.name} - {track.title}</span>
-                    </li>
-                </ul>
+                <div className={`playlist-container`}>
+                   <ul>
+                        <li   onClick={ () => {this.props.playSong(index)}} key={track.id}
+                              className={`  playlist__item   ${isActive? "active" : ' '}`}>
+                            <span> {index+1+`.`}{track.artist.name} - {track.title}  </span>
+                        </li>
+                    </ul>
+                </div>
             ))
         )
     };

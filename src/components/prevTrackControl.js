@@ -7,7 +7,7 @@ export default  class PrevTrackControl extends Component{
 
     render(){
         return(
-            <button onClick={this.props.prev} >prev</button>
+            <button className={`btn btn-default`} onClick={this.props.prev} >prev</button>
         );
     }
 }

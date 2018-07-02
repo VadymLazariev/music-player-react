@@ -7,6 +7,7 @@ import NextTrackControl from "./nextTrackControl";
 import RepeatControl from "./repeatControl";
 import MuteControl from "./muteControl";
 import ProgressBarControl from "./progressBarControl";
+import './player.css'
 export default class Player extends  Component{
 
     constructor(props){
@@ -123,17 +124,23 @@ export default class Player extends  Component{
 
     render(){
         return(
-            <div>
+            <div className={`player`}>
+                <div className={`player-controls`}>
+                    <ProgressBarControl progress={this.state.progress}
+                                        setProgress={this.setProgress}/>
+                    <div className={`player-controls-buttons`}>
+                        <PlayControl togglePlay={this.togglePlay} isPlay={this.state.isPlay}/>
+                        <PrevTrackControl prev={this.prev} />
+                        <NextTrackControl next={this.next}/>
+                        <RepeatControl repeat={this.repeat}/>
+                        <MuteControl mute={this.toggleMute}/>
+                    </div>
+                </div>
+
+
              <Playlist tracks={this.state.tracks}
                        currentTrackId={this.state.currentTrackId}
                        playSong={this.playSong}/>
-                <PlayControl togglePlay={this.togglePlay} isPlay={this.state.isPlay}/>
-                <PrevTrackControl prev={this.prev} />
-                <NextTrackControl next={this.next}/>
-                <RepeatControl repeat={this.repeat}/>
-                <MuteControl mute={this.toggleMute}/>
-                <ProgressBarControl progress={this.state.progress}
-                                    setProgress={this.setProgress}/>
             </div>
         );
     };

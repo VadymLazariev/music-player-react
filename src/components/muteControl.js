@@ -7,7 +7,7 @@ export default class  MuteControl extends Component{
 
     render(){
         return(
-            <button onClick={this.props.mute}>mute</button>
+            <button  className={`btn btn-default`} onClick={this.props.mute}>mute</button>
         );
     }
 }
