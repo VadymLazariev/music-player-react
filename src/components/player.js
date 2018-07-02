@@ -8,6 +8,7 @@ import RepeatControl from "./repeatControl";
 import MuteControl from "./muteControl";
 import ProgressBarControl from "./progressBarControl";
 import './player.css'
+import TrackInfo from "./trackInfo";
 export default class Player extends  Component{
 
     constructor(props){
@@ -33,8 +34,10 @@ export default class Player extends  Component{
     componentDidMount(){
         axios.get('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/track?q=eminem').then(res => {
             this.setState({tracks: res.data.data});
+            this.setState({currentTrack:res.data.data[0]});
             console.log(this.state.tracks)
         });
+
     }
 
     togglePlay = () =>{
@@ -59,6 +62,7 @@ export default class Player extends  Component{
     playSong = (id) =>{
         this.setState({
             currentTrackId: id,
+            currentTrack: this.state.tracks[id],
             isPlay:true
         }
         );
@@ -123,7 +127,7 @@ export default class Player extends  Component{
 
 
     render(){
-        return(
+        return(console.log(this.state.currentTrack),
             <div className={`player`}>
                 <div className={`player-controls`}>
                     <ProgressBarControl progress={this.state.progress}
