@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import SongList from './components/songList/songList'
-import Song from "./components/song/song";
-import Player from "./components/player";
+import Player from "./components/Player";
 
 class App extends Component {
   render() {

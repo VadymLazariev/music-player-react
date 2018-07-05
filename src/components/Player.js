@@ -1,14 +1,24 @@
 import React,{Component} from 'react'
 import axios from 'axios'
-import Playlist from "./playlist";
-import PlayControl from "./playControl";
-import PrevTrackControl from "./prevTrackControl";
+import Playlist from "./Playlist";
+import PlayControl from "./PlayControl";
+import PrevTrackControl from "./PrevTrackControl";
 import NextTrackControl from "./nextTrackControl";
 import RepeatControl from "./repeatControl";
 import MuteControl from "./muteControl";
-import ProgressBarControl from "./progressBarControl";
-import './player.css'
-import TrackInfo from "./trackInfo";
+import './shared-styles.css'
+import ProgressBarControl from "./ProgressBarControl";
+import {PlayListContainer} from "./PlaylistStyles";
+import  {PlayList} from  "./PlaylistStyles";
+import {MainStyled} from  './PlayerStyles';
+import {PlayerContainerStyled} from './PlayerStyles';
+import  {PlayerHeaderStyled} from './PlayerStyles';
+import  {PlayerContentStyled} from './PlayerStyles';
+import TrackInfo from "./TrackInfo";
+import AlbumImage from "./AlbumImage";
+import {PlayerControls} from './PlayerStyles'
+import {PlayerSubControls} from './PlayerStyles'
+
 export default class Player extends  Component{
 
     constructor(props){
@@ -18,7 +28,7 @@ export default class Player extends  Component{
             repeat:false,
             progress:null,
             tracks:[],
-            currentTrack: null,
+            currentTrack: undefined,
             currentTrackId: null,
         };
         this.audio = new Audio();
@@ -128,8 +138,10 @@ export default class Player extends  Component{
 
     render(){
         return(console.log(this.state.currentTrack),
-            <div className={`player`}>
-                <div className={`player-controls`}>
+            /*<MainStyled>
+                <PlayerContainerStyled>
+                    <PlayerHeaderStyled> </PlayerHeaderStyled>
+                    <PlayerContentStyled>
                     <ProgressBarControl progress={this.state.progress}
                                         setProgress={this.setProgress}/>
                     <div className={`player-controls-buttons`}>
@@ -139,13 +151,40 @@ export default class Player extends  Component{
                         <RepeatControl repeat={this.repeat}/>
                         <MuteControl mute={this.toggleMute}/>
                     </div>
-                </div>
+                    </PlayerContentStyled>
+                </PlayerContainerStyled>
+                <PlayListContainer>
+                    <PlayList>
+                    <Playlist tracks={this.state.tracks}
+                              currentTrackId={this.state.currentTrackId}
+                              playSong={this.playSong}/>
+                    </PlayList>
+                </PlayListContainer>
+            </MainStyled>*/
+                <MainStyled>
+                    <PlayerContainerStyled>
+                        <PlayerHeaderStyled></PlayerHeaderStyled>
+                        <AlbumImage></AlbumImage>
+                        <PlayerContentStyled>
+                            <TrackInfo/>
+                            <ProgressBarControl progress={this.state.progress}
+                                                setProgress={this.setProgress}/>
+                            <PlayerControls>
+                                <PrevTrackControl prev={this.prev} />
+                                <PlayControl togglePlay={this.togglePlay} isPlay={this.state.isPlay}/>
+                                <NextTrackControl next={this.next}/>
+                            </PlayerControls>
+                        </PlayerContentStyled>
+                    </PlayerContainerStyled>
+                    <PlayListContainer>
+                        <PlayList>
+                            <Playlist tracks={this.state.tracks}
+                                      currentTrackId={this.state.currentTrackId}
+                                      playSong={this.playSong}/>
+                        </PlayList>
+                    </PlayListContainer>
+                </MainStyled>
 
-
-             <Playlist tracks={this.state.tracks}
-                       currentTrackId={this.state.currentTrackId}
-                       playSong={this.playSong}/>
-            </div>
         );
     };
 }
