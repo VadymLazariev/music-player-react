@@ -5,7 +5,7 @@ import {FETCH_PLAYLIST_REQUEST} from '../actions/types'
 
 
 const initialState = {
-    playList: null,
+    playList: [],
     isLoading:false,
     errors:null,
 };
@@ -22,7 +22,8 @@ export default function (state = initialState,action) {
              return{
                  ...state,
                  playList:action.payload,
-                 errors:null
+                 errors:null,
+                 isLoading: false,
              }
          case FETCH_PLAYLIST_FAILURE:
              return{

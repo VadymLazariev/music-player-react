@@ -9,7 +9,7 @@ export const getPlayList = id => {
         axios.get('https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/track?q=eminem').then(response => {
             dispatch({
                 type: FETCH_PLAYLIST_SUCCESS,
-                payload:response,
+                payload:response.data.data,
             });
         }).catch(err => {
             dispatch({

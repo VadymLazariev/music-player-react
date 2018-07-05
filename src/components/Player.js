@@ -134,7 +134,12 @@ class Player extends  Component {
 
 
     render() {
-        return (console.log(this.state.currentTrack),
+
+        if (this.props.isLoading) {
+            return null
+        }
+
+        return (
                 /*<MainStyled>
                     <PlayerContainerStyled>
                         <PlayerHeaderStyled> </PlayerHeaderStyled>
@@ -175,7 +180,7 @@ class Player extends  Component {
                     </PlayerContainerStyled>
                     <PlayListContainer>
                         <PlayList>
-                            <Playlist tracks={this.state.tracks}
+                            <Playlist tracks={this.props.playList}
                                       currentTrackId={this.state.currentTrackId}
                                       playSong={this.playSong}/>
                         </PlayList>
