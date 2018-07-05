@@ -10,8 +10,8 @@ export default  class TrackInfo extends  Component{
     render(){
         return(
             <PlayerSongInfo className="player__song-info">
-                <PlayerSongName className="player__band-name">Red Hot Chili Peppers</PlayerSongName>
-                <PlayerBandName className="player__song-name">Californication</PlayerBandName>
+                <PlayerSongName className="player__band-name">Eminem</PlayerSongName>
+                <PlayerBandName className="player__song-name">Scary Movies</PlayerBandName>
             </PlayerSongInfo>
         );
     };
