@@ -1,0 +1,7 @@
+.sub-controls {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    border: none;
+}

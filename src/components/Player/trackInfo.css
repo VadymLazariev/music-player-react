@@ -1,0 +1,17 @@
+.track-name{
+    color: white;
+    font-size: 16px;
+}
+
+.artist-name{
+    color: rgb(113, 113, 113);
+    font-size: 16px;
+}
+
+.song-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 70px;
+}

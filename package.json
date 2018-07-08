@@ -5,6 +5,8 @@
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.1.0",
     "axios": "^0.18.0",
+    "font-awesome": "^4.7.0",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "1.1.4"
@@ -17,7 +19,9 @@
   },
   "devDependencies": {
     "bootstrap": "^4.1.1",
+    "lodash": "^4.17.10",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^3.3.3"

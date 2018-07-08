@@ -1,0 +1,27 @@
+.album-image{
+    position: absolute;
+    text-align: center;
+    margin-top: 100px;
+    width: 300px;
+}
+.album-image img{
+    margin: 0;
+    width: 50%;
+    height:50%;
+    justify-self: center;
+    align-self: center;
+    -moz-box-shadow: 0 0 10px #000000;
+    -webkit-box-shadow: 0 0 10px #000000;
+    box-shadow: 0 0 10px #000000;
+}
+
+@media screen and (max-width:600px) {
+    .album-image {
+        width: 100%;
+    }
+
+    .album-image img {
+        height: 150px;
+        width: 150px;
+    }
+}

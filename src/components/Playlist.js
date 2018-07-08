@@ -10,7 +10,6 @@ export default class Playlist extends Component{
         return(
             this.props.tracks.map((track,index) => (
                 isActive = (this.props.currentTrackId === index),
-
                    <UlStyled  key={track.id}>
                         <LiStyled  onClick={() => {this.props.playSong(index)}}>
                               {index+1+`.`}{track.artist.name} - {track.title}
