@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Field,reduxForm} from 'redux-form';
 import './login.css';
+import {required} from '../../utils/validations'
 
 /*
 class Login extends  Component{
@@ -42,7 +43,7 @@ let Login = props => (
             <input type="password" placeholder={`Password`}/>
             <button type={`submit`}>Log in!</button>*/}
             <div>
-                <Field placeholder={`Login`} name={`login`} component={renderField} type={`text`}></Field>
+                <Field validate={required} placeholder={`Login`} name={`login`} component={renderField} type={`text`}></Field>
             </div>
             <div>
                 <Field placeholder={`Password`} name={`password`} component={`input`} type={`password`}></Field>
@@ -53,18 +54,31 @@ let Login = props => (
     </div>
 );
 
+const validate = values => {
+    const errors = {};
+    if (!values.login){
+        errors.login = 'Required';
+    } else if(values.login.length < 2){
+        errors.login = 'Login must be more then 2 symbols';
+    }
+    return errors;
+};
+
+
 Login = reduxForm({
-    form: 'LoginForm'
+    form: 'LoginForm',
 })(Login);
 
 export default Login;
 
 
 const renderField = ({input,meta}) => {
-    /*console.log(field);*/
+    console.log(meta.error);
     return(
         <div>
             <input  {...input} placeholder={`Login`} type="text" name={`login`} />
         </div>
     );
 };
+
+
