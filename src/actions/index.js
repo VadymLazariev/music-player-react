@@ -23,11 +23,12 @@ export const getPlayList = id => {
 };
 
 export const selectTrack = track => {
-  return({
-     type:SELECT_TRACK,
-     track
-  });
-  console.log(track);
+  return function(dispatch){
+    dispatch({
+      type: SELECT_TRACK,
+      payload: track
+    });
+  }
 }
 
 

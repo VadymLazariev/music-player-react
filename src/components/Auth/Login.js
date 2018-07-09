@@ -1,17 +1,33 @@
 import React,{Component} from 'react';
+import {Link} from 'react-router-dom';
 import './login.css';
 
-function Login() {
+class Login extends  Component{
+  constructor(props){
+    super(props);
+    this.state = {login:'', password:''};
+  }
+
+  handleEmail(event){
+    this.setState({login: event.target.value});
+  }
+  handlePassword(event){
+    this.setState({password: event.target.value});
+  }
+
+  render(){
   return(
     <div className={`form-container`}>
     <form action="">
-      <label htmlFor="">login or email: <input type="text"/></label>
-      <label htmlFor="">password: <input type="password"/></label>
-      <p>Sign Up!</p>
+      <p><Link to={`/`}>Home</Link></p>
+      <input value={this.state.login} onChange={this.handleEmail} type="text"  placeholder={`Login`}/>
+      <input   value={this.state.password} onChange={this.handlePassword} type="password" placeholder={`Password`}/>
+      <p><Link to={`/registration`}>Sign Up!</Link></p>
     </form>
     <button type={`submit`}>Log in!</button>
     </div>
   );
+  };
 }
 
 

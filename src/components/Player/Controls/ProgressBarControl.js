@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './progressBar.css';
+import PropTypes from 'prop-types';
 
 function ProgressBarControl(props) {
   return (
@@ -10,3 +11,7 @@ function ProgressBarControl(props) {
 }
 
 export default ProgressBarControl;
+
+ProgressBarControl.propTypes ={
+  handleClick: PropTypes.func
+};

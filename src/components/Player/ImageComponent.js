@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import './imageComponent.css';
+import PropTypes from 'prop-types';
 
 function ImageComponent(props) {
   return(
@@ -10,3 +11,7 @@ function ImageComponent(props) {
 }
 
 export default ImageComponent;
+
+ImageComponent.propTypes = {
+  img: PropTypes.string
+};

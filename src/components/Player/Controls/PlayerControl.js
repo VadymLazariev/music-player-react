@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import './playerControl.css';
+import PropTypes from 'prop-types';
+import Player from "../Player";
 
 function PlayerControl(props) {
   return (
@@ -10,3 +12,9 @@ function PlayerControl(props) {
 }
 
 export default PlayerControl;
+
+PlayerControl.propTypes = {
+  handleClick: PropTypes.func,
+  controlType: PropTypes.string,
+  fontAwesome: PropTypes.string,
+};

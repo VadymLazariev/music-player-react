@@ -4,13 +4,13 @@ import Playlist from '../PlayList/PlayList';
 import './player.css';
 import Track from "../PlayList/Track";
 import TrackInfo from './TrackInfo';
-import ControlsContainer from "./ControlsContainer";
-import PlayerControl from "./PlayerControl";
-import ProgressBarControl from './ProgressBarControl';
+import ControlsContainer from "./Controls/ControlsContainer";
+import PlayerControl from "./Controls/PlayerControl";
+import ProgressBarControl from './Controls/ProgressBarControl';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import {connect} from 'react-redux';
 import {getPlayList,play,pause,selectTrack} from "../../actions";
-import SubControlContainer from "./SubControlContainer";
+import SubControlContainer from "./Controls/SubControlContainer";
 import ImageComponent from "./ImageComponent";
 import {BrowserRouter,Link,Route} from 'react-router-dom'
 class PlayerContainer extends Component {

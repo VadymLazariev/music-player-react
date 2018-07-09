@@ -75,3 +75,19 @@
         grid-template-columns: 100%;
     }
 }
+
+.fa-heart:hover{
+    color: red;
+}
+
+.fa-repeat:hover{
+    color: white;
+}
+
+.fa-random:hover{
+    color: white;
+}
+
+.fa-volume-up:hover{
+    color: white;
+}

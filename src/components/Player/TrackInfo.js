@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import './trackInfo.css';
+import PropTypes from 'prop-types';
 
 function TrackInfo(props) {
   return(
@@ -11,3 +12,8 @@ function TrackInfo(props) {
 }
 
 export default  TrackInfo;
+
+TrackInfo.propTypes ={
+  name: PropTypes.string,
+  title: PropTypes.string
+};
