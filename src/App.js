@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import {applyMiddleware, compose, createStore} from 'redux';
 import reduxThunk from 'redux-thunk';
-import rootReducer from './reducers/index';
+import rootReducer from './components/Player/reducers/index';
 import {Provider} from "react-redux";
 import PlayerContainer from './components/Player/PlayerContainer'
 import {BrowserRouter,Link,Route} from 'react-router-dom';

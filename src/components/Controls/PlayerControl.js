@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './playerControl.css';
 import PropTypes from 'prop-types';
-import Player from "../Player";
 
 function PlayerControl(props) {
   return (

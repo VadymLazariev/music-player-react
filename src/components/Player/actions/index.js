@@ -1,5 +1,5 @@
-import {FETCH_PLAYLIST_SUCCESS, FETCH_PLAYLIST_FAILURE, FETCH_PLAYLIST_REQUEST, SELECT_TRACK} from '../actions/types'
-import {PREV, PLAY, PAUSE, NEXT, TOGGLE_TRACK} from '../actions/types';
+import {FETCH_PLAYLIST_SUCCESS, FETCH_PLAYLIST_FAILURE, FETCH_PLAYLIST_REQUEST, SELECT_TRACK} from './types'
+import {PREV, PLAY, PAUSE, NEXT, TOGGLE_TRACK} from './types';
 import axios from "axios/index";
 
 export const getPlayList = id => {
@@ -22,15 +22,16 @@ export const getPlayList = id => {
   }
 };
 
-export const selectTrack = track => {
-  return function(dispatch){
+
+export  const selectTrack = (i) =>{
+  return function (dispatch) {
     dispatch({
       type: SELECT_TRACK,
-      payload: track
+      payload: i
     });
   }
-}
 
+}
 
 export const play = () => {
   return function (dispatch) {

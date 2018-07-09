@@ -3,9 +3,10 @@ import './player.css'
 
 function Player(props) {
   return (
-    <main >
+    <main>
       {props.children}
     </main>
   );
 }
+
 export default Player;

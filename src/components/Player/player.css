@@ -10,7 +10,7 @@
     margin: auto;
 }
 
-.box-shadow{
+.box-shadow {
     -moz-box-shadow: 0 0 10px #000000;
     -webkit-box-shadow: 0 0 10px #000000;
     box-shadow: 0 0 10px #000000;
@@ -61,33 +61,31 @@
     padding: 30px;
 }
 
-
-@media screen and (max-width:600px) {
+@media screen and (max-width: 600px) {
     .player-container {
         margin: 0;
         grid-template-columns: 300px;
     }
 }
 
-
-@media screen and (max-width:480px){
-    .player-container{
+@media screen and (max-width: 480px) {
+    .player-container {
         grid-template-columns: 100%;
     }
 }
 
-.fa-heart:hover{
+.fa-heart:hover {
     color: red;
 }
 
-.fa-repeat:hover{
+.fa-repeat:hover {
     color: white;
 }
 
-.fa-random:hover{
+.fa-random:hover {
     color: white;
 }
 
-.fa-volume-up:hover{
+.fa-volume-up:hover {
     color: white;
 }

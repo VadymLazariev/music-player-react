@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import Track from './Track';
 import './playList.css';
-
+import PropTypes from 'prop-types';
+function clickHandler(e){
+  e.preventDefault();
+  console.log('clicked')
+}
 function PlayList(props) {
-  const {currentSongIndex,tracks,isSelected,clickHandler} = props;
+  const {i,handleClick,currentSongIndex,tracks,isSelected,} = props;
   return (
     <div className="playlist-container">
       <div className="playlist">
@@ -17,7 +21,7 @@ function PlayList(props) {
                 id={track.id}
                 title_short={track.title}
                 duration={track.duration}
-                onClick={clickHandler}
+                clickHandler={ () => handleClick(index)}
               />
             ))
           }
@@ -26,5 +30,12 @@ function PlayList(props) {
     </div>
   );
 }
+
+PlayList.propTypes ={
+  handleClick: PropTypes.func,
+  currentSongIndex: PropTypes.number,
+  tracks: PropTypes.array,
+  isSelected: PropTypes.bool
+};
 
 export default PlayList;

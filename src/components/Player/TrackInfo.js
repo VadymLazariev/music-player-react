@@ -1,9 +1,9 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import './trackInfo.css';
 import PropTypes from 'prop-types';
 
 function TrackInfo(props) {
-  return(
+  return (
     <div className={`song-info`}>
       <p className={`artist-name`}>{props.name}</p>
       <p className={`track-name`}>{props.title}</p>
@@ -11,9 +11,9 @@ function TrackInfo(props) {
   );
 }
 
-export default  TrackInfo;
+export default TrackInfo;
 
-TrackInfo.propTypes ={
+TrackInfo.propTypes = {
   name: PropTypes.string,
   title: PropTypes.string
 };

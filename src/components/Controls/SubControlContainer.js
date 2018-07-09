@@ -1,12 +1,12 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import './subControlCss.css';
 
 function SubControlContainer(props) {
-  return(
+  return (
     <div className={`sub-controls`}>
       {props.children}
     </div>
   );
 }
 
-export default  SubControlContainer;
+export default SubControlContainer;

@@ -6,8 +6,9 @@ import {SELECT_TRACK} from '../actions/types'
 
 const initialState = {
   playList: [],
-  currentTrack:null,
-  isActive:false,
+  currentTrack: null,
+  selectedTrack:null,
+  isActive: false,
   isLoading: false,
   errors: null,
 
@@ -35,7 +36,10 @@ export default function (state = initialState, action) {
         errors: action.payload
       };
     case SELECT_TRACK:
-      return action.currentTrack;
+      return {
+        ...state,
+        selectedTrack: state.playList[action.payload],
+      };
 
     default:
       return state

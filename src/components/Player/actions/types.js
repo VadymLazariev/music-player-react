@@ -1,4 +1,3 @@
-
 const IDENTIFIER = "player";
 
 export const FETCH_PLAYLIST_SUCCESS = `${IDENTIFIER}FETCH_SONG_SUCCESS`;

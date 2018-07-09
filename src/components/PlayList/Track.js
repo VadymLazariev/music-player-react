@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import './track.css';
 import {formatTime} from "../../utils/utils";
 
+
 function Track(props) {
-  const {isSelected, clickHandler, index, title_short, duration, preview} = props;
+  const {isSelected, clickHandler, index, title_short, duration} = props;
   let isActivated = false;
   return (
     <li className={isSelected ? `active-song` : ``} onClick={clickHandler}>

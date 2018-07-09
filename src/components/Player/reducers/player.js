@@ -1,15 +1,15 @@
-import {PREV,PLAY,PAUSE,NEXT } from '../actions/types';
+import {PREV, PLAY, PAUSE, NEXT} from '../actions/types';
 
 
-const initialState ={
-  isPlaying:false,
-  trackId:0,
-  track:{}
+const initialState = {
+  isPlaying: false,
+  trackId: 0,
+  track: {}
 };
 
 
-export default function player (state=initialState,action) {
-  switch (action.type){
+export default function player(state = initialState, action) {
+  switch (action.type) {
     case PLAY:
       return {
         ...state,
@@ -20,7 +20,6 @@ export default function player (state=initialState,action) {
         ...state,
         isPlaying: action.payload
       };
-
     default:
       return state;
   }
