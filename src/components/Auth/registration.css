@@ -10,3 +10,8 @@ form{
     align-content: center;
     flex-direction: column;
 }
+
+button{
+    height: 50%;
+    align-self: center;
+}

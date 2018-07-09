@@ -1,7 +1,9 @@
-import React,{Component} from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {Field,reduxForm} from 'redux-form';
 import './login.css';
 
+/*
 class Login extends  Component{
   constructor(props){
     super(props);
@@ -21,14 +23,48 @@ class Login extends  Component{
     <form action="">
       <p><Link to={`/`}>Home</Link></p>
       <input value={this.state.login} onChange={this.handleEmail} type="text"  placeholder={`Login`}/>
-      <input   value={this.state.password} onChange={this.handlePassword} type="password" placeholder={`Password`}/>
+      <input value={this.state.password} onChange={this.handlePassword} type="password" placeholder={`Password`}/>
       <p><Link to={`/registration`}>Sign Up!</Link></p>
+        <button type={`submit`}>Log in!</button>
     </form>
-    <button type={`submit`}>Log in!</button>
+
     </div>
   );
   };
 }
+*/
 
+let Login = props => (
+    <div className={`form-container`}>
+        <form action="" onSubmit={props.handleSubmit}>
+          {/*  <p><Link to={`/`}>Home</Link></p>
+            <input type="text" placeholder={`Login`}/>
+            <input type="password" placeholder={`Password`}/>
+            <button type={`submit`}>Log in!</button>*/}
+            <div>
+                <Field placeholder={`Login`} name={`login`} component={renderField} type={`text`}></Field>
+            </div>
+            <div>
+                <Field placeholder={`Password`} name={`password`} component={`input`} type={`password`}></Field>
+            </div>
+            <button type={`submit`}>Log in!</button>
+            <p><Link to={`/registration`}>Sign Up!</Link></p>
+        </form>
+    </div>
+);
+
+Login = reduxForm({
+    form: 'LoginForm'
+})(Login);
 
 export default Login;
+
+
+const renderField = ({input,meta}) => {
+    /*console.log(field);*/
+    return(
+        <div>
+            <input  {...input} placeholder={`Login`} type="text" name={`login`} />
+        </div>
+    );
+};
