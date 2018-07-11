@@ -61,6 +61,13 @@
     padding: 30px;
 }
 
+.control__small__activated i{
+    color: rgb(81, 81, 81);
+    font-size: 15px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: red;
+}
 @media screen and (max-width: 600px) {
     .player-container {
         margin: 0;
@@ -89,3 +96,8 @@
 .fa-volume-up:hover {
     color: white;
 }
+.fa-volume-up{
+    color: white;
+}
+
+

@@ -2,26 +2,54 @@ import Player from './Player';
 import React, {Component} from 'react';
 import Playlist from '../PlayList/PlayList';
 import './player.css';
-import Track from "../PlayList/Track";
 import TrackInfo from './TrackInfo';
 import ControlsContainer from "../Controls/ControlsContainer";
 import PlayerControl from "../Controls/PlayerControl";
 import ProgressBarControl from '../Controls/ProgressBarControl';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import {connect} from 'react-redux';
-import {getPlayList, play, pause, selectTrack} from "./actions/index";
+import {getPlayList, play, pause, selectTrack, setProgress} from "./actions/index";
 import SubControlContainer from "../Controls/SubControlContainer";
 import ImageComponent from "./ImageComponent";
-import {BrowserRouter, Link, Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 class PlayerContainer extends Component {
   constructor(props) {
     super(props);
     this.audio = new Audio();
+
+    this.audio.addEventListener('timeupdate', e => {
+      this.updateProgress();
+    });
+
+    this.audio.addEventListener('ended', e => {
+      this.next();
+    });
   }
+
   componentDidMount() {
     this.props.getPlayList();
   }
+
+  setProgress = (e) => {
+    const target = e.target.nodeName === "SPAN" ? e.target.parentNode : e.target;
+    const width = target.clientWidth;
+    const rect = target.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+    const duration = this.audio.duration;
+    const currentTime = (duration * offsetX) / width;
+    const progress = (currentTime * 100) / duration;
+    this.audio.currentTime = currentTime;
+    this.props.setProgress(progress);
+    this.play();
+  };
+
+  updateProgress = () => {
+    const progress = (this.audio.currentTime * 100) / this.audio.duration;
+    this.props.setProgress(progress)
+
+  };
+
   activateTrack = (index) => {
     this.props.selectTrack(index);
     this.audio.src = this.props.playlist.playList[index].preview;
@@ -49,12 +77,16 @@ class PlayerContainer extends Component {
     this.props.pause();
     this.audio.pause();
   };
+  toggleMute = () => {
+    this.audio.muted = !this.audio.muted;
+  };
   togglePlaying = () => {
     if (!this.audio.src) {
       this.audio.src = this.props.playlist.playList[0].preview;
     }
     this.props.playlist.isPlaying ? this.pause() : this.play();
   };
+
   render() {
     if (this.props.playlist.isLoading) {
       return null
@@ -62,7 +94,6 @@ class PlayerContainer extends Component {
     if (!this.props.playlist.playList.length) {
       return null;
     }
-    console.log(this.props.playlist.index);
     return (
       <main className={`player-container `}>
         <div className={`player `}>
@@ -74,7 +105,7 @@ class PlayerContainer extends Component {
             <Player>
               <TrackInfo title={this.props.playlist.currentTrack.title}
                          name={this.props.playlist.currentTrack.artist.name}/>
-              <ProgressBarControl/>
+              <ProgressBarControl progressOnClick={this.setProgress} progress={this.props.playlist.progress}/>
               <ControlsContainer>
                 <PlayerControl handleClick={this.prev} controlType={`control__change-song`}
                                fontAwesome={`fa fa-backward`}/>
@@ -86,7 +117,9 @@ class PlayerContainer extends Component {
                                fontAwesome={`fa fa-forward`}/>
               </ControlsContainer>
               <SubControlContainer>
-                <PlayerControl controlType={`control__small`} fontAwesome={`fa fa-volume-up`}/>
+                <PlayerControl handleClick={this.toggleMute}
+                               controlType={ `control__small` }
+                               fontAwesome={!this.audio.muted ? `fa fa-volume-up` : `active`}/>
                 <PlayerControl controlType={`control__small`} fontAwesome={`fa fa-random`}/>
                 <PlayerControl controlType={`control__small`} fontAwesome={`fa fa-repeat`}/>
                 <PlayerControl controlType={`control__small`} fontAwesome={`fa fa-heart`}/>
@@ -108,4 +141,4 @@ const mapStateToProps = store => {
   };
 };
 
-export default connect(mapStateToProps, {getPlayList, play, pause, selectTrack})(PlayerContainer);
+export default connect(mapStateToProps, {getPlayList, play, pause, selectTrack, setProgress})(PlayerContainer);

@@ -2,7 +2,7 @@ import {FETCH_PLAYLIST_SUCCESS} from '../actions/types'
 import {FETCH_PLAYLIST_FAILURE} from '../actions/types'
 import {FETCH_PLAYLIST_REQUEST} from '../actions/types'
 import {SELECT_TRACK} from '../actions/types'
-import {PLAY,PAUSE,PREV,NEXT} from '../actions/types'
+import {PLAY,PAUSE,PREV,NEXT,PROGRESS} from '../actions/types'
 
 const initialState = {
   playList: [],
@@ -67,7 +67,11 @@ export default function (state = initialState, action) {
         index: action.payload,
         currentTrack: state.playList[state.index]
       };
-
+    case PROGRESS:
+      return{
+        ...state,
+        progress: action.payload
+      };
     default:
       return state
   }
