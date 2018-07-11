@@ -5,7 +5,7 @@ import {formatTime} from "../../utils/utils";
 
 function Track(props) {
   const {isSelected, clickHandler, index, title_short, duration} = props;
-  let isActivated = false;
+  let isActivated = true;
   return (
     <li className={isSelected ? `active-song` : ``} onClick={clickHandler}>
       {index + 1 + ' . '}{title_short} {formatTime(duration)}

@@ -17,18 +17,44 @@ import {BrowserRouter, Link, Route} from 'react-router-dom'
 class PlayerContainer extends Component {
   constructor(props) {
     super(props);
+    this.audio = new Audio();
   }
-
   componentDidMount() {
     this.props.getPlayList();
   }
-
-  handleClick = (index) => {
+  activateTrack = (index) => {
     this.props.selectTrack(index);
-    console.log(this.props.playlist.selectedTrack);
-    console.log(index);
+    this.audio.src = this.props.playlist.playList[index].preview;
+    this.audio.play();
   };
-
+  next = () => {
+    const {isRepeating, index, playList} = this.props.playlist;
+    const nextIndex = isRepeating ? index : index < playList.length - 1 ? index + 1 : 0;
+    this.activateTrack(nextIndex);
+    this.audio.src = this.props.playlist.playList[nextIndex].preview;
+    this.audio.play();
+  };
+  prev = () => {
+    const {index, playList} = this.props.playlist;
+    const prevIndex = index > 0 ? index - 1 : playList.length - 1;
+    this.activateTrack(prevIndex);
+    this.audio.src = this.props.playlist.playList[prevIndex].preview;
+    this.audio.play();
+  };
+  play = () => {
+    this.props.play();
+    this.audio.play();
+  };
+  pause = () => {
+    this.props.pause();
+    this.audio.pause();
+  };
+  togglePlaying = () => {
+    if (!this.audio.src) {
+      this.audio.src = this.props.playlist.playList[0].preview;
+    }
+    this.props.playlist.isPlaying ? this.pause() : this.play();
+  };
   render() {
     if (this.props.playlist.isLoading) {
       return null
@@ -36,9 +62,7 @@ class PlayerContainer extends Component {
     if (!this.props.playlist.playList.length) {
       return null;
     }
-    /*    const {play, pause, isPlaying} = this.props.player;*/
-
-    console.log(this.props.player.isPlaying);
+    console.log(this.props.playlist.index);
     return (
       <main className={`player-container `}>
         <div className={`player `}>
@@ -52,11 +76,14 @@ class PlayerContainer extends Component {
                          name={this.props.playlist.currentTrack.artist.name}/>
               <ProgressBarControl/>
               <ControlsContainer>
-                <PlayerControl controlType={`control__change-song`} fontAwesome={`fa fa-backward`}/>
-                <PlayerControl handleClick={!this.props.player.isPlaying ? this.props.play : this.props.pause}
+                <PlayerControl handleClick={this.prev} controlType={`control__change-song`}
+                               fontAwesome={`fa fa-backward`}/>
+                <PlayerControl handleClick={this.togglePlaying}
                                controlType={`control__play`}
-                               fontAwesome={!this.props.player.isPlaying ? ` fa fa-play-circle` : `fa fa-pause-circle`}/>
-                <PlayerControl controlType={`control__change-song`} fontAwesome={`fa fa-forward`}/>
+                               fontAwesome={!this.props.playlist.isPlaying ?
+                                 ` fa fa-play-circle` : `fa fa-pause-circle`}/>
+                <PlayerControl handleClick={this.next} controlType={`control__change-song`}
+                               fontAwesome={`fa fa-forward`}/>
               </ControlsContainer>
               <SubControlContainer>
                 <PlayerControl controlType={`control__small`} fontAwesome={`fa fa-volume-up`}/>
@@ -67,7 +94,8 @@ class PlayerContainer extends Component {
             </Player>
           </div>
         </div>
-        <Playlist handleClick={this.handleClick} tracks={this.props.playlist.playList}/>
+        <Playlist currentSongIndex={this.props.playlist.index} handleClick={this.activateTrack}
+                  tracks={this.props.playlist.playList}/>
       </main>
     )
   } ;

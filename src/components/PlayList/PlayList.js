@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import Track from './Track';
 import './playList.css';
 import PropTypes from 'prop-types';
+
 function clickHandler(e){
   e.preventDefault();
   console.log('clicked')
 }
 function PlayList(props) {
-  const {i,handleClick,currentSongIndex,tracks,isSelected,} = props;
+  const {handleClick,currentSongIndex,tracks} = props;
   return (
     <div className="playlist-container">
       <div className="playlist">
@@ -15,7 +16,7 @@ function PlayList(props) {
           {
             tracks.map((track, index) => (
               <Track
-                isSelected={isSelected}
+                isSelected={index === currentSongIndex}
                 index={index}
                 key={track.id}
                 id={track.id}

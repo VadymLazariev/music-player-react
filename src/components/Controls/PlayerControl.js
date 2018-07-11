@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function PlayerControl(props) {
   return (
-    <button onClick={props.handleClick} className={`button ${props.controlType}`} type={`button`}>
+    <button onClick={ props.handleClick} className={`button ${props.controlType}`} type={`button`}>
       <i className={`${props.fontAwesome}`}></i>
     </button>
   );

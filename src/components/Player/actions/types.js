@@ -9,3 +9,4 @@ export const PLAY = `${IDENTIFIER}PLAY`;
 export const PAUSE = `${IDENTIFIER}PAUSE`;
 export const NEXT = `${IDENTIFIER}NEXT`;
 export const SELECT_TRACK = `${IDENTIFIER}SELECT_TRACK`;
+export const PROGRESS = `${IDENTIFIER}PROGRESS`;

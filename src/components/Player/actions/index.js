@@ -1,5 +1,5 @@
 import {FETCH_PLAYLIST_SUCCESS, FETCH_PLAYLIST_FAILURE, FETCH_PLAYLIST_REQUEST, SELECT_TRACK} from './types'
-import {PREV, PLAY, PAUSE, NEXT, TOGGLE_TRACK} from './types';
+import {PREV, PLAY, PAUSE, NEXT, TOGGLE_TRACK,PROGRESS} from './types';
 import axios from "axios/index";
 
 export const getPlayList = id => {
@@ -21,6 +21,17 @@ export const getPlayList = id => {
     })
   }
 };
+
+
+
+export const setProgress = (progress) => {
+  return function (dispatch) {
+    dispatch({
+      type:PROGRESS,
+      payload:progress
+    });
+  }
+}
 
 
 export  const selectTrack = (i) =>{
