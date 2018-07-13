@@ -11,7 +11,8 @@ import {connect} from 'react-redux';
 import {getPlayList, play, pause, selectTrack, setProgress} from "./actions/index";
 import SubControlContainer from "../Controls/SubControlContainer";
 import ImageComponent from "./ImageComponent";
-import {Link} from 'react-router-dom'
+import tracks from '../../assets/tracksMock';
+import {Link} from 'react-router-dom';
 
 class PlayerContainer extends Component {
   constructor(props) {
@@ -99,7 +100,7 @@ class PlayerContainer extends Component {
         <div className={`player `}>
           <ImageComponent img={this.props.playlist.currentTrack.album.cover_medium}/>
           <div className={`player__header`}>
-            <p><Link target="_blank" to={`/login`}>login</Link></p>
+            {/*<p><Link target="_blank" to={`/login`}>login</Link></p>*/}
           </div>
           <div className={`player__track-management`}>
             <Player>
@@ -119,10 +120,9 @@ class PlayerContainer extends Component {
               <SubControlContainer>
                 <PlayerControl handleClick={this.toggleMute}
                                controlType={ `control__small` }
-                               fontAwesome={!this.audio.muted ? `fa fa-volume-up` : `active`}/>
+                               fontAwesome={!this.audio.muted ? `fa fa-volume-up` : `fa fa-volume-down`}/>
                 <PlayerControl controlType={`control__small`} fontAwesome={`fa fa-random`}/>
                 <PlayerControl controlType={`control__small`} fontAwesome={`fa fa-repeat`}/>
-                <PlayerControl controlType={`control__small`} fontAwesome={`fa fa-heart`}/>
               </SubControlContainer>
             </Player>
           </div>
