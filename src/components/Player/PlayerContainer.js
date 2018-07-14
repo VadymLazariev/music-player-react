@@ -13,6 +13,7 @@ import SubControlContainer from "../Controls/SubControlContainer";
 import ImageComponent from "./ImageComponent";
 import tracks from '../../assets/tracksMock';
 import {Link} from 'react-router-dom';
+import Search from "./Search";
 
 class PlayerContainer extends Component {
   constructor(props) {
@@ -29,7 +30,10 @@ class PlayerContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.getPlayList();
+    //this.props.getPlayList();
+    //this.props.foo();
+    // console.log(this.props.playlist.foo);
+    //this.props.getPlayListFromMock();
   }
 
   setProgress = (e) => {
@@ -53,21 +57,21 @@ class PlayerContainer extends Component {
 
   activateTrack = (index) => {
     this.props.selectTrack(index);
-    this.audio.src = this.props.playlist.playList[index].preview;
+    this.audio.src = this.props.playlist.userPlayList[index].preview;
     this.audio.play();
   };
   next = () => {
     const {isRepeating, index, playList} = this.props.playlist;
     const nextIndex = isRepeating ? index : index < playList.length - 1 ? index + 1 : 0;
     this.activateTrack(nextIndex);
-    this.audio.src = this.props.playlist.playList[nextIndex].preview;
+    this.audio.src = this.props.playlist.userPlayList[nextIndex].preview;
     this.audio.play();
   };
   prev = () => {
     const {index, playList} = this.props.playlist;
     const prevIndex = index > 0 ? index - 1 : playList.length - 1;
     this.activateTrack(prevIndex);
-    this.audio.src = this.props.playlist.playList[prevIndex].preview;
+    this.audio.src = this.props.playlist.userPlayList[prevIndex].preview;
     this.audio.play();
   };
   play = () => {
@@ -83,7 +87,7 @@ class PlayerContainer extends Component {
   };
   togglePlaying = () => {
     if (!this.audio.src) {
-      this.audio.src = this.props.playlist.playList[0].preview;
+      this.audio.src = this.props.playlist.userPlayList[0].preview;
     }
     this.props.playlist.isPlaying ? this.pause() : this.play();
   };
@@ -92,15 +96,13 @@ class PlayerContainer extends Component {
     if (this.props.playlist.isLoading) {
       return null
     }
-    if (!this.props.playlist.playList.length) {
-      return null;
-    }
     return (
       <main className={`player-container `}>
         <div className={`player `}>
           <ImageComponent img={this.props.playlist.currentTrack.album.cover_medium}/>
           <div className={`player__header`}>
             {/*<p><Link target="_blank" to={`/login`}>login</Link></p>*/}
+            <Search/>
           </div>
           <div className={`player__track-management`}>
             <Player>
@@ -119,7 +121,7 @@ class PlayerContainer extends Component {
               </ControlsContainer>
               <SubControlContainer>
                 <PlayerControl handleClick={this.toggleMute}
-                               controlType={ `control__small` }
+                               controlType={`control__small`}
                                fontAwesome={!this.audio.muted ? `fa fa-volume-up` : `fa fa-volume-down`}/>
                 <PlayerControl controlType={`control__small`} fontAwesome={`fa fa-random`}/>
                 <PlayerControl controlType={`control__small`} fontAwesome={`fa fa-repeat`}/>
@@ -128,7 +130,8 @@ class PlayerContainer extends Component {
           </div>
         </div>
         <Playlist currentSongIndex={this.props.playlist.index} handleClick={this.activateTrack}
-                  tracks={this.props.playlist.playList}/>
+                  tracks={this.props.search.searchPlayList ? this.props.search.searchPlayList :
+                    this.props.playlist.userPlayList}/>
       </main>
     )
   } ;
@@ -137,7 +140,8 @@ class PlayerContainer extends Component {
 const mapStateToProps = store => {
   return {
     playlist: store.playlist,
-    player: store.player
+    player: store.player,
+    search: store.search
   };
 };
 

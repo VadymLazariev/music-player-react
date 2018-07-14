@@ -1,47 +1,31 @@
 import {FETCH_PLAYLIST_SUCCESS} from '../actions/types'
 import {FETCH_PLAYLIST_FAILURE} from '../actions/types'
-import {FETCH_PLAYLIST_REQUEST} from '../actions/types'
+import {FETCH_PLAYLIST_REQUEST, FETCH_MOCK_PLAYLIST} from '../actions/types'
 import {SELECT_TRACK} from '../actions/types'
-import {PLAY,PAUSE,PREV,NEXT,PROGRESS} from '../actions/types'
+import {PLAY, PAUSE, PREV, NEXT, PROGRESS,FOO} from '../actions/types'
+import tracks from "../../../assets/tracksMock"
 
 const initialState = {
-  playList: [],
+  userPlayList:  tracks.data,
   index: 0,
-  currentTrack: null,
-  progress:0,
-  isRepeating:false,
+  currentTrack: tracks.data[0],
+  progress: 0,
+  isRepeating: false,
   isPlaying: false,
   isLoading: false,
   errors: null,
+  foo:null,
 
 };
 
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case FETCH_PLAYLIST_REQUEST:
-      return {
-        ...state,
-        isLoading: true
-      };
-    case FETCH_PLAYLIST_SUCCESS:
-      return {
-        ...state,
-        playList: action.payload.playlist,
-        currentTrack: action.payload.currentTrack,
-        errors: null,
-        isLoading: false,
-      };
-    case FETCH_PLAYLIST_FAILURE:
-      return {
-        ...state,
-        errors: action.payload
-      };
     case SELECT_TRACK:
       return {
         ...state,
         index: action.payload,
-        currentTrack: state.playList[action.payload],
+        currentTrack: state.userPlayList[action.payload],
         isPlaying: true
       };
     case PLAY:
@@ -55,20 +39,20 @@ export default function (state = initialState, action) {
         isPlaying: action.payload
       };
     case PREV:
-      return{
+      return {
         ...state,
-        isPlaying:true,
-        currentTrack: state.playList[state.index]
+        isPlaying: true,
+        currentTrack: state.userPlayList[state.index]
       };
     case NEXT:
-      return{
+      return {
         ...state,
-        isPlaying:true,
+        isPlaying: true,
         index: action.payload,
-        currentTrack: state.playList[state.index]
+        currentTrack: state.userPlayList[state.index]
       };
     case PROGRESS:
-      return{
+      return {
         ...state,
         progress: action.payload
       };
