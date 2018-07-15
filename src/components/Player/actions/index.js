@@ -3,9 +3,12 @@ import {
   FETCH_PLAYLIST_FAILURE,
   FETCH_PLAYLIST_REQUEST,
   SELECT_TRACK,
-  FETCH_MOCK_PLAYLIST,
-  FETCH_SEARCH_VALUE
+  FETCH_SEARCH_VALUE,
+  ADD_TRACK,
+  REMOVE_TRACK,
 } from './types'
+
+
 import {PREV, PLAY, PAUSE, NEXT, TOGGLE_TRACK, PROGRESS} from './types';
 import axios from "axios/index";
 import tracks from "../../../assets/tracksMock"
@@ -30,12 +33,24 @@ export const getPlayList = (querryParam) => {
   }
 };
 
+export const removeTrack = id => ({
+  type: REMOVE_TRACK,
+  payload: id,
+});
 
-export const setSearchValue = (value) =>{
+
+export const addTrack = (track) => {
+  return {
+    type: ADD_TRACK,
+    payload: track
+  };
+};
+
+export const setSearchValue = (value) => {
   return function (dispatch) {
     dispatch({
-      type:FETCH_SEARCH_VALUE,
-      payload:value,
+      type: FETCH_SEARCH_VALUE,
+      payload: value,
     });
   }
 }

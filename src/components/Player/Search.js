@@ -3,32 +3,24 @@ import './search.css';
 
 
 import axios from 'axios'
-import {getPlayList} from "./actions";
+import {getPlayList,setSearchValue} from "./actions";
 import {connect} from "react-redux";
 
 
 
 class Search extends Component {
-  state = {
-    query: '',
-    results: []
-  };
 
   getInfo = () => {
-   this.props.getPlayList(this.state.query);
+   this.props.getPlayList(this.props.search.searchValue);
    console.log(this.props.search.searchPlayList);
   };
 
   handleInputChange = () => {
-    this.setState({
-      query: this.search.value
-    }, () => {
-      if (this.state.query && this.state.query.length > 1) {
-          this.getInfo();
-
-      }
-
-    });
+    this.props.setSearchValue(this.search.value);
+    console.log('input value',this.props.search.searchValue);
+    if (this.props.search.searchValue && this.props.search.searchValue.length > 1) {
+      this.getInfo();
+    }
 
   };
 
@@ -51,4 +43,4 @@ const mapStateToProps = store => {
   };
 };
 
-export default connect(mapStateToProps, {getPlayList})(Search);
+export default connect(mapStateToProps, {getPlayList,setSearchValue})(Search);

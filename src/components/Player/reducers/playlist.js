@@ -1,8 +1,6 @@
-import {FETCH_PLAYLIST_SUCCESS} from '../actions/types'
-import {FETCH_PLAYLIST_FAILURE} from '../actions/types'
-import {FETCH_PLAYLIST_REQUEST, FETCH_MOCK_PLAYLIST} from '../actions/types'
+
 import {SELECT_TRACK} from '../actions/types'
-import {PLAY, PAUSE, PREV, NEXT, PROGRESS,FOO} from '../actions/types'
+import {PLAY, PAUSE, PREV, NEXT, PROGRESS,ADD_TRACK,REMOVE_TRACK} from '../actions/types'
 import tracks from "../../../assets/tracksMock"
 
 const initialState = {
@@ -14,8 +12,6 @@ const initialState = {
   isPlaying: false,
   isLoading: false,
   errors: null,
-  foo:null,
-
 };
 
 
@@ -56,6 +52,21 @@ export default function (state = initialState, action) {
         ...state,
         progress: action.payload
       };
+    case ADD_TRACK:
+      console.log(action.payload);
+      state.userPlayList.push(action.payload);
+      console.log(state.userPlayList);
+      return {...state};
+    case  REMOVE_TRACK:
+      console.log('REMOVE_TRACK');
+      console.log(...state);
+      console.log(...state.userPlayList);
+      console.log(action.payload);
+    state.userPlayList.splice(action.payload,1);
+    //state.userPlayList.splice(action.payload + 1);
+    console.log(state.userPlayList);
+      return {...state};
+
     default:
       return state
   }

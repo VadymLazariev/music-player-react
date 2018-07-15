@@ -3,10 +3,8 @@ import Track from './Track';
 import './playList.css';
 import PropTypes from 'prop-types';
 
-
-
-function PlayList(props) {
-  const {handleClick,currentSongIndex,tracks,handleRemoveOnClick,handleAddOnClick} = props;
+function SearchList(props) {
+  const {handleClick,currentSongIndex,tracks} = props;
   return (
     <div className="playlist-container">
       <div className="playlist">
@@ -21,8 +19,6 @@ function PlayList(props) {
                 title_short={track.title}
                 duration={track.duration}
                 clickHandler={ () => handleClick(index)}
-                onClickRemove={ () => handleRemoveOnClick(currentSongIndex)}
-                onClickAdd = { () => handleAddOnClick(track)}
               />
             ))
           }
@@ -32,11 +28,11 @@ function PlayList(props) {
   );
 }
 
-PlayList.propTypes ={
+SearchList.propTypes ={
   handleClick: PropTypes.func,
   currentSongIndex: PropTypes.number,
   tracks: PropTypes.array,
   isSelected: PropTypes.bool
 };
 
-export default PlayList;
+export default SearchList;
