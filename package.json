@@ -9,7 +9,9 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "redux-form": "^7.4.2",
+    "redux-forms": "^1.0.0-3"
   },
   "scripts": {
     "start": "react-scripts start",

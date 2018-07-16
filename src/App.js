@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import './App.css';
 import {applyMiddleware, compose, createStore} from 'redux';
 import reduxThunk from 'redux-thunk';
-import rootReducer from './components/Player/reducers/index';
+import rootReducer from './reducers/index';
 import {Provider} from "react-redux";
 import PlayerContainer from './components/Player/PlayerContainer'
-import {BrowserRouter,Link,Route} from 'react-router-dom';
-import Login from './components/Auth/Login';
-import Registration from "./components/Auth/Registration";
+import {BrowserRouter,Link,Route,Switch} from 'react-router-dom';
+import LoginContainer from  './components/Auth/LoginContainer';
+import PrivateRoute from "./components/AuthGuard/AuthGuard";
+import httpServer from './interceptor';
+
 const store = createStore(rootReducer, compose(
   applyMiddleware(reduxThunk),
   window.devToolsExtension ? window.devToolsExtension() : f => f,
@@ -19,9 +21,12 @@ class App extends Component {
       <Provider store={store}>
         <BrowserRouter>
         <div>
-          <Route exec path='/registration' component={Registration}/>
-          <Route exec path='/login' component={Login}/>
-          <Route exec path='/' render={ ()=> (<PlayerContainer/>)}/>
+          <Switch>
+            <Switch>
+              <Route path="/login" component={LoginContainer}/>
+              <PrivateRoute path="/" component={PlayerContainer} />
+            </Switch>
+          </Switch>
         </div>
         </BrowserRouter>
       </Provider>
@@ -30,3 +35,4 @@ class App extends Component {
 }
 
 export default App;
+httpServer.setupInterceptors(store);

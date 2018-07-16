@@ -1,24 +1,30 @@
 import React, {Component} from 'react';
-import Track from './Track';
-import './playList.css';
+import './searchList.css';
 import PropTypes from 'prop-types';
+import SearchListItem from "./SearchItem";
+
+let smth = false
 
 function SearchList(props) {
-  const {handleClick,currentSongIndex,tracks} = props;
+  const {playlist, handleClick, currentSongIndex, tracks, handleAddOnClick, isSearch} = props;
+
   return (
-    <div className="playlist-container">
-      <div className="playlist">
+    <div className={isSearch ? `searchList-container` : `hide`}>
+      <div className="searchList">
         <ul>
           {
             tracks.map((track, index) => (
-              <Track
-                isSelected={index === currentSongIndex}
+              <SearchListItem
+                playlist={playlist}
                 index={index}
                 key={track.id}
                 id={track.id}
                 title_short={track.title}
                 duration={track.duration}
-                clickHandler={ () => handleClick(index)}
+                onClickAdd={() => {
+                  handleAddOnClick(track)
+                }}
+                clickHandler={() => {}}
               />
             ))
           }
@@ -28,7 +34,7 @@ function SearchList(props) {
   );
 }
 
-SearchList.propTypes ={
+SearchList.propTypes = {
   handleClick: PropTypes.func,
   currentSongIndex: PropTypes.number,
   tracks: PropTypes.array,

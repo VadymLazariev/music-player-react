@@ -8,13 +8,12 @@ import PlayerControl from "../Controls/PlayerControl";
 import ProgressBarControl from '../Controls/ProgressBarControl';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import {connect} from 'react-redux';
-import {getPlayList, play, pause, selectTrack, setProgress, removeTrack,addTrack} from "./actions/index";
+import {getPlayList, play, pause, selectTrack, setProgress, removeTrack, addTrack} from "../../actions/palyer";
 import SubControlContainer from "../Controls/SubControlContainer";
 import ImageComponent from "./ImageComponent";
-import tracks from '../../assets/tracksMock';
-import {Link} from 'react-router-dom';
 import Search from "./Search";
-import SearchList from "../PlayList/SearchList";
+import SearchList from "../searchList/SearchList";
+
 
 class PlayerContainer extends Component {
   constructor(props) {
@@ -28,13 +27,6 @@ class PlayerContainer extends Component {
     this.audio.addEventListener('ended', e => {
       this.next();
     });
-  }
-
-  componentDidMount() {
-    //this.props.getPlayList();
-    //this.props.foo();
-    // console.log(this.props.playlist.foo);
-    //this.props.getPlayListFromMock();
   }
 
   setProgress = (e) => {
@@ -53,16 +45,12 @@ class PlayerContainer extends Component {
   updateProgress = () => {
     const progress = (this.audio.currentTime * 100) / this.audio.duration;
     this.props.setProgress(progress)
-
   };
 
   activateTrack = (index) => {
- /*   index = !this.props.playlist.userPlayList[index + 1] ||
-    !this.props.playlist.userPlayList[index - 1] ? 0 : index;*/
     this.props.selectTrack(index);
-    this.audio.src = this.props.search.searchValue ? this.props.search.searchPlayList[index].preview :
-      this.props.playlist.userPlayList[index].preview;
-    console.log([index]);
+    this.audio.src = this.props.playlist.userPlayList[index].preview;
+    console.log(index);
     this.audio.play();
   };
   next = () => {
@@ -98,35 +86,17 @@ class PlayerContainer extends Component {
   };
 
   render() {
-    let currentTrack = null;
-    if (this.props.search.searchValue && this.props.search.currentTrack) {
-      currentTrack = this.props.search.currentTrack;
-    }
-    else if (!this.props.playlist.currentTrack) {
-      currentTrack = this.props.playlist.userPlayList[0];
-      this.audio.src = this.props.playlist.userPlayList[0].preview;
-    }
-    else {
-      currentTrack = this.props.playlist.currentTrack;
-    }
-    if (this.props.playlist.isLoading) {
-      return null
-    }
     return (
       <main className={`player-container `}>
         <div className={`player `}>
-          <ImageComponent img={currentTrack.album.cover_medium}/>
+          <ImageComponent img={this.props.playlist.currentTrack.album.cover_medium}/>
           <div className={`player__header`}>
             <Search/>
-            <button onClick={() => {
-              this.props.removeTrack(this.props.playlist.index)
-            }}>remove
-            </button>
           </div>
           <div className={`player__track-management`}>
             <Player>
-              <TrackInfo title={currentTrack.title}
-                         name={currentTrack.artist.name}/>
+              <TrackInfo title={this.props.playlist.currentTrack.title}
+                         name={this.props.playlist.currentTrack.artist.name}/>
               <ProgressBarControl progressOnClick={this.setProgress} progress={this.props.playlist.progress}/>
               <ControlsContainer>
                 <PlayerControl handleClick={this.prev} controlType={`control__change-song`}
@@ -148,11 +118,13 @@ class PlayerContainer extends Component {
             </Player>
           </div>
         </div>
-        <Playlist handleAddOnClick={this.props.addTrack} handleRemoveOnClick={this.props.removeTrack}
-                  currentSongIndex={this.props.search.index ? this.props.search.index : this.props.playlist.index}
-                  handleClick={this.activateTrack}
-                  tracks={this.props.search.searchValue ? this.props.search.searchPlayList :
-                    this.props.playlist.userPlayList}/>
+
+        <Playlist  isSearch={this.props.search.searchValue} handleClick={this.activateTrack}
+                  currentSongIndex={this.props.playlist.index}
+                  handleRemoveOnClick={this.props.removeTrack} tracks={this.props.playlist.userPlayList}/>
+
+        <SearchList playlist={this.props.playlist.userPlayList} isSearch={this.props.search.searchValue} handleAddOnClick={this.props.addTrack}
+                    tracks={this.props.search.searchValue ? this.props.search.searchPlayList : []}/>
 
       </main>
     )

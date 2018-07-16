@@ -3,7 +3,7 @@ import './search.css';
 
 
 import axios from 'axios'
-import {getPlayList,setSearchValue} from "./actions";
+import {getPlayList,setSearchValue} from "../../actions/palyer";
 import {connect} from "react-redux";
 
 

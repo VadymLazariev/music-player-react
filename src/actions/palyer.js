@@ -8,15 +8,16 @@ import {
   REMOVE_TRACK,
 } from './types'
 
+import {playlistUrl} from "../apiUrls/apiUrl";
 
 import {PREV, PLAY, PAUSE, NEXT, TOGGLE_TRACK, PROGRESS} from './types';
 import axios from "axios/index";
-import tracks from "../../../assets/tracksMock"
+import tracks from "../assets/tracksMock"
 
 export const getPlayList = (querryParam) => {
   return function (dispatch) {
     dispatch({type: FETCH_PLAYLIST_REQUEST});
-    axios.get(`https://cors-anywhere.herokuapp.com/https://api.deezer.com/search/track?q=${querryParam}`).then(response => {
+    axios.get(playlistUrl + querryParam).then(response => {
       dispatch({
         type: FETCH_PLAYLIST_SUCCESS,
         payload: {

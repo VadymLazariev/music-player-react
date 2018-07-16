@@ -1,16 +1,17 @@
 
 import {SELECT_TRACK} from '../actions/types'
 import {PLAY, PAUSE, PREV, NEXT, PROGRESS,ADD_TRACK,REMOVE_TRACK} from '../actions/types'
-import tracks from "../../../assets/tracksMock"
+import tracks from "../assets/tracksMock"
 
 const initialState = {
-  userPlayList:  tracks.data,
+  userPlayList: tracks.data,
   index: 0,
   currentTrack: tracks.data[0],
   progress: 0,
   isRepeating: false,
   isPlaying: false,
   isLoading: false,
+  isAdded:false,
   errors: null,
 };
 
@@ -53,19 +54,13 @@ export default function (state = initialState, action) {
         progress: action.payload
       };
     case ADD_TRACK:
-      console.log(action.payload);
       state.userPlayList.push(action.payload);
-      console.log(state.userPlayList);
-      return {...state};
+      return {...state,isAdded:true};
     case  REMOVE_TRACK:
-      console.log('REMOVE_TRACK');
-      console.log(...state);
-      console.log(...state.userPlayList);
-      console.log(action.payload);
-    state.userPlayList.splice(action.payload,1);
-    //state.userPlayList.splice(action.payload + 1);
-    console.log(state.userPlayList);
-      return {...state};
+      return{
+      ...state,
+        userPlayList: [...state.userPlayList.slice(0, action.payload), ...state.userPlayList.slice(action.payload + 1)],
+    };
 
     default:
       return state

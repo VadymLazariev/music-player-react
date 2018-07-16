@@ -7,7 +7,6 @@ const initialState = {
   track: {}
 };
 
-
 export default function player(state = initialState, action) {
   switch (action.type) {
     case PLAY:
