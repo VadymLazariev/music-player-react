@@ -10,9 +10,10 @@ function SearchListItem(props) {
     <div>
       <p>{console.log(isAdded)}</p>
     <li className={isSelected ? `active-song` : ``} onClick={ () => {clickHandler(index)}}>
-      {index + 1 + ' . '}{title_short} {formatTime(duration)} <button onClick={onClickAdd}>
-      { isAdded ? `added` : `add`}</button>
+      {index + 1 + ' . '}{title_short} {formatTime(duration)}
     </li>
+      <button onClick={onClickAdd}>
+        { isAdded ? `added` : `add`}</button>
     </div>
   );
 }

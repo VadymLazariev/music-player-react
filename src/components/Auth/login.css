@@ -16,7 +16,7 @@ form{
     justify-content: center;
     align-content: center;
     flex-direction: column;
-    background-color: rgb(81, 81, 81);
+    background: rgb(26, 26, 26);
 }
 
 button{
@@ -64,10 +64,11 @@ body {
 }
 
 h2 {
+    color:white;
     width: 100%;
     font-size: 1.35em;
     display: block;
-    background:grey;
+    background: rgb(26, 26, 26);
     text-transform: uppercase;
     padding: .75em 1em .75em 1.5em;
     box-shadow:inset 0px 1px 1px;

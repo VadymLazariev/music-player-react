@@ -50,7 +50,6 @@ class PlayerContainer extends Component {
   activateTrack = (index) => {
     this.props.selectTrack(index);
     this.audio.src = this.props.playlist.userPlayList[index].preview;
-    console.log(index);
     this.audio.play();
   };
   next = () => {
