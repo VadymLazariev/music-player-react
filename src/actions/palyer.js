@@ -6,6 +6,8 @@ import {
   FETCH_SEARCH_VALUE,
   ADD_TRACK,
   REMOVE_TRACK,
+  REPREAT_TRACK,
+  RANDOMIZE_PLAYLIST
 } from './types'
 
 import {playlistUrl} from "../apiUrls/apiUrl";
@@ -33,6 +35,23 @@ export const getPlayList = (querryParam) => {
     })
   }
 };
+
+export const randomize = () => {
+  return function (dispatch) {
+    dispatch({
+      type: RANDOMIZE_PLAYLIST,
+    });
+  }
+}
+
+export const repeat = () => {
+  return function (dispatch) {
+    dispatch({
+      type: REPREAT_TRACK,
+    });
+  }
+}
+
 
 export const removeTrack = id => ({
   type: REMOVE_TRACK,

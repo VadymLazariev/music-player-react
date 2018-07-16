@@ -1,14 +1,36 @@
-import {PREV, PLAY, PAUSE, NEXT} from '../actions/types';
+
+import {SELECT_TRACK} from '../actions/types'
+import {PLAY, PAUSE, PREV, NEXT, PROGRESS,ADD_TRACK,REMOVE_TRACK,REPREAT_TRACK,RANDOMIZE_PLAYLIST} from '../actions/types'
+import tracks from "../assets/tracksMock"
+import {shuffle} from "../utils/utils";
+
+
+
+
 
 
 const initialState = {
+  userPlayList: tracks.data,
+  index: 0,
+  currentTrack: tracks.data[0],
+  progress: 0,
+  isRepeating: false,
   isPlaying: false,
-  trackId: 0,
-  track: {}
+  isLoading: false,
+  isAdded:false,
+  errors: null,
 };
 
-export default function player(state = initialState, action) {
+
+export default function (state = initialState, action) {
   switch (action.type) {
+    case SELECT_TRACK:
+      return {
+        ...state,
+        index: action.payload,
+        currentTrack: state.userPlayList[action.payload],
+        isPlaying: true
+      };
     case PLAY:
       return {
         ...state,
@@ -19,7 +41,47 @@ export default function player(state = initialState, action) {
         ...state,
         isPlaying: action.payload
       };
+    case PREV:
+      return {
+        ...state,
+        isPlaying: true,
+        currentTrack: state.userPlayList[state.index]
+      };
+    case NEXT:
+      return {
+        ...state,
+        isPlaying: true,
+        index: action.payload,
+        currentTrack: state.userPlayList[state.index]
+      };
+    case PROGRESS:
+      return {
+        ...state,
+        progress: action.payload
+      };
+    case ADD_TRACK:
+      state.userPlayList.push(action.payload);
+      return {...state,isAdded:true};
+    case  REMOVE_TRACK:
+      return{
+      ...state,
+        userPlayList: [...state.userPlayList.slice(0, action.payload), ...state.userPlayList.slice(action.payload + 1)],
+    };
+    case  REPREAT_TRACK:
+      return{
+        ...state,
+        isRepeating: !action.payload,
+      };
+    case  RANDOMIZE_PLAYLIST:{
+      console.log(...state.userPlayList);
+      let amth =  shuffle(...state.userPlayList);
+      console.log(amth);
+      console.log(...state.userPlayList);
+      return{
+        ...state,
+      }
+    }
     default:
-      return state;
+      return state
   }
 }
