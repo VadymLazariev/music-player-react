@@ -9,7 +9,7 @@ import ProgressBarControl from '../Controls/ProgressBarControl';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import {connect} from 'react-redux';
 import {
-  getPlayList, play, pause, selectTrack, setProgress, removeTrack, addTrack,randomize
+  getPlayList, play, pause, selectTrack, setProgress, removeTrack, addTrack, randomize
 } from "../../actions/palyer";
 import SubControlContainer from "../Controls/SubControlContainer";
 import ImageComponent from "./ImageComponent";
@@ -155,7 +155,6 @@ export default connect(mapStateToProps, {
   addTrack,
   randomize
 })(PlayerContainer);
-
 
 ImageComponent.propTypes = {
   currentTrack: PropTypes.object,

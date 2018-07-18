@@ -6,18 +6,7 @@ import PlayList from "../PlayList/PlayList";
 
 function SearchListItem(props) {
   const {id, playlist, isSelected, clickHandler, index, title_short, duration, onClickAdd} = props;
-
-
-  const checkAddedTrack = () => {
-    let isTrackAdded = false;
-    playlist.map(track => {
-      if (track.id === id) {
-        isTrackAdded = true;
-      }
-    });
-    return isTrackAdded;
-  };
-
+  const checkAddedTrack = () => playlist.some(track => track.id === id);
   return (
     <div>
       <li className={isSelected ? `active-song` : ``} onClick={() => {
