@@ -1,5 +1,5 @@
 import {LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST} from './types';
-import {registerUrl,loginUrl} from "../apiUrls/apiUrl";
+import {registerUrl, loginUrl} from "../apiUrls/apiUrl";
 import axios from "axios/index";
 
 export const login = value => {
@@ -12,10 +12,10 @@ export const login = value => {
       })
     }).catch(err => {
       console.log(err),
-      dispatch({
-        type: LOGIN_FAILURE,
-        payload: err,
-      });
+        dispatch({
+          type: LOGIN_FAILURE,
+          payload: err,
+        });
     });
   }
 };

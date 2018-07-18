@@ -14,7 +14,7 @@ import {
 import SubControlContainer from "../Controls/SubControlContainer";
 import ImageComponent from "./ImageComponent";
 import Search from "./Search";
-import SearchList from "../searchList/SearchList";
+import SearchList from "../SearchList/SearchList";
 import PropTypes from 'prop-types';
 
 
@@ -94,7 +94,6 @@ class PlayerContainer extends Component {
     const {currentTrack, progress, isPlaying, userPlayList, index} = this.props.player;
     const {searchValue, searchPlayList} = this.props.search;
     return (
-
       <main className={`player-container `}>
         <div className={`player `}>
           <ImageComponent img={currentTrack.album.cover_medium}/>

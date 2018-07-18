@@ -45,7 +45,6 @@ export const randomize = () => {
 }
 
 
-
 export const removeTrack = id => ({
   type: REMOVE_TRACK,
   payload: id,

@@ -1,4 +1,4 @@
-.searchList-container{
+.searchList-container {
     background: rgb(26, 26, 26);
 }
 
@@ -9,11 +9,10 @@
 
 }
 
-ul{
+ul {
     padding: 0;
 }
 
-
-.hide{
+.hide {
     display: none;
 }

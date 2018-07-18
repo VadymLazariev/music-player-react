@@ -12,7 +12,6 @@ import {
 import tracks from "../assets/tracksMock"
 
 
-
 const initialState = {
   userPlayList: tracks.data,
   index: 0,
@@ -73,7 +72,9 @@ export default function (state = initialState, action) {
 
       return {
         ...state,
-        userPlayList: [ ...state.userPlayList.sort( () => {return .5 - Math.random()})]
+        userPlayList: [...state.userPlayList.sort(() => {
+          return .5 - Math.random()
+        })]
       }
     }
     default:
