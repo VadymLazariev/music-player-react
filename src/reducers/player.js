@@ -1,12 +1,17 @@
-
 import {SELECT_TRACK} from '../actions/types'
-import {PLAY, PAUSE, PREV, NEXT, PROGRESS,ADD_TRACK,REMOVE_TRACK,REPREAT_TRACK,RANDOMIZE_PLAYLIST} from '../actions/types'
+import {
+  PLAY,
+  PAUSE,
+  PREV,
+  NEXT,
+  PROGRESS,
+  ADD_TRACK,
+  REMOVE_TRACK,
+  REPREAT_TRACK,
+  RANDOMIZE_PLAYLIST
+} from '../actions/types'
 import tracks from "../assets/tracksMock"
 import {shuffle} from "../utils/utils";
-
-
-
-
 
 
 const initialState = {
@@ -17,7 +22,7 @@ const initialState = {
   isRepeating: false,
   isPlaying: false,
   isLoading: false,
-  isAdded:false,
+  isAdded: false,
   errors: null,
 };
 
@@ -61,23 +66,23 @@ export default function (state = initialState, action) {
       };
     case ADD_TRACK:
       state.userPlayList.push(action.payload);
-      return {...state,isAdded:true};
+      return {...state, isAdded: true};
     case  REMOVE_TRACK:
-      return{
-      ...state,
+      return {
+        ...state,
         userPlayList: [...state.userPlayList.slice(0, action.payload), ...state.userPlayList.slice(action.payload + 1)],
-    };
+      };
     case  REPREAT_TRACK:
-      return{
+      return {
         ...state,
         isRepeating: !action.payload,
       };
-    case  RANDOMIZE_PLAYLIST:{
+    case  RANDOMIZE_PLAYLIST: {
       console.log(...state.userPlayList);
-      let amth =  shuffle(...state.userPlayList);
+      let amth = shuffle(...state.userPlayList);
       console.log(amth);
       console.log(...state.userPlayList);
-      return{
+      return {
         ...state,
       }
     }

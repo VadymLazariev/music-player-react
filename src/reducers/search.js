@@ -7,9 +7,9 @@ import {
 
 
 const initialState = {
-  searchPlayList:[],
-  currentTrack:null,
-  searchValue:null,
+  searchPlayList: [],
+  currentTrack: null,
+  searchValue: null,
   index: 0,
   isLoading: false,
 };
