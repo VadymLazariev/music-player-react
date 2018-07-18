@@ -2,7 +2,6 @@ import React from 'react';
 import './searchItem.css';
 import {formatTime} from "../../utils/utils";
 import PropTypes from 'prop-types';
-import PlayList from "../PlayList/PlayList";
 
 function SearchListItem(props) {
   const {id, playlist, isSelected, clickHandler, index, title_short, duration, onClickAdd} = props;

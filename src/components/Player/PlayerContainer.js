@@ -120,6 +120,8 @@ class PlayerContainer extends Component {
                 <PlayerControl handleClick={this.toggleMute}
                                controlType={`control__small`}
                                fontAwesome={!this.audio.muted ? `fa fa-volume-up` : `fa fa-volume-down`}/>
+                <PlayerControl handleClick={this.props.randomize} controlType={`control__small`}
+                               fontAwesome={`fa fa-random`}/>
                 <PlayerControl handleClick={this.toggleRepeat} controlType={`control__small`}
                                fontAwesome={`fa fa-repeat`}/>
               </SubControlContainer>

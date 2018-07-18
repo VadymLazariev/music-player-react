@@ -10,7 +10,7 @@ import {
   RANDOMIZE_PLAYLIST
 } from '../actions/types'
 import tracks from "../assets/tracksMock"
-import {shuffle} from "../utils/utils";
+
 
 
 const initialState = {
@@ -70,12 +70,10 @@ export default function (state = initialState, action) {
         userPlayList: [...state.userPlayList.slice(0, action.payload), ...state.userPlayList.slice(action.payload + 1)],
       };
     case  RANDOMIZE_PLAYLIST: {
-      console.log(...state.userPlayList);
-      let amth = shuffle(...state.userPlayList);
-      console.log(amth);
-      console.log(...state.userPlayList);
+
       return {
         ...state,
+        userPlayList: [ ...state.userPlayList.sort( () => {return .5 - Math.random()})]
       }
     }
     default:
