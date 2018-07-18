@@ -1,23 +1,17 @@
 import React, {Component} from 'react'
 import './search.css';
-
-
-import axios from 'axios'
-import {getPlayList,setSearchValue} from "../../actions/palyer";
+import {getPlayList, setSearchValue} from "../../actions/palyer";
 import {connect} from "react-redux";
-
 
 
 class Search extends Component {
 
   getInfo = () => {
-   this.props.getPlayList(this.props.search.searchValue);
-   console.log(this.props.search.searchPlayList);
+    this.props.getPlayList(this.props.search.searchValue);
   };
 
   handleInputChange = () => {
     this.props.setSearchValue(this.search.value);
-    console.log('input value',this.props.search.searchValue);
     if (this.props.search.searchValue && this.props.search.searchValue.length > 1) {
       this.getInfo();
     }
@@ -43,4 +37,4 @@ const mapStateToProps = store => {
   };
 };
 
-export default connect(mapStateToProps, {getPlayList,setSearchValue})(Search);
+export default connect(mapStateToProps, {getPlayList, setSearchValue})(Search);

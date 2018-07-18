@@ -1,29 +1,22 @@
-import React, {Component} from 'react';
-import {Field,reduxForm} from 'redux-form';
+import React  from 'react';
+import {Field, reduxForm} from 'redux-form';
 import './login.css';
-import {required,minLength,email} from '../../validators/validators';
+import {required, minLength, email} from '../../validators/validators';
 
 let Login = props => (
   <div className="log-form">
     <h2>Login to your account</h2>
     <form className={`form`} action="" onSubmit={props.handleSubmit}>
-      <Field validate={[required,minLength,email]} placeholder={`email`} name={`email`} component={renderFieldEmail} type={`text`}></Field>
-      <Field  validate={[required,minLength]} placeholder={`Password`} name={`password`} component={renderFieldPassword} type={`password`}></Field>
+      <Field validate={[required, minLength, email]} placeholder={`email`} name={`email`}
+             component={renderFieldEmail}
+             type={`text`}></Field>
+      <Field validate={[required, minLength]} placeholder={`Password`} name={`password`}
+             component={renderFieldPassword}
+             type={`password`}></Field>
       <button type="submit" className="btn">Login</button>
     </form>
   </div>
 );
-
-const validate = values => {
-  const errors = {};
-  if (!values.login){
-    errors.login = 'Required';
-  } else if(values.login.length < 2){
-    errors.login = 'Login must be more then 2 symbols';
-  }
-  return errors;
-};
-
 
 Login = reduxForm({
   form: 'LoginForm',
@@ -32,21 +25,21 @@ Login = reduxForm({
 export default Login;
 
 
-const renderFieldEmail = ({input,meta}) => {
+const renderFieldEmail = ({input, meta}) => {
   console.log(meta.error);
-  return(
+  return (
     <div>
-      <input className={meta.error ? ` input error-input` : ` input `}  {...input}  type="text"  />
+      <input className={meta.error ? ` input error-input` : ` input `}  {...input} type="text"/>
       <p className={meta.error ? `error` : ` `}>{meta.error}</p>
     </div>
   );
 };
 
-const renderFieldPassword = ({input,meta}) => {
+const renderFieldPassword = ({input, meta}) => {
   console.log(meta.error);
-  return(
+  return (
     <div>
-      <input className={meta.error ? ` input error-input` : ` input`}  {...input}  type="password"  />
+      <input className={meta.error ? ` input error-input` : ` input`}  {...input} type="password"/>
       <p className={meta.error ? `error` : ` `}>{meta.error}</p>
     </div>
   );

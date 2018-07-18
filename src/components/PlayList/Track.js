@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './track.css';
 import {formatTime} from "../../utils/utils";
 
@@ -9,8 +9,9 @@ function Track(props) {
     <div>
     <li className={isSelected ? `active-song` : ``} onClick={clickHandler}>
       {index + 1 + ' . '}{title_short} {formatTime(duration)}
-    </li>
       <button onClick={onClickRemove}>remove</button>
+    </li>
+
     </div>
   );
 }

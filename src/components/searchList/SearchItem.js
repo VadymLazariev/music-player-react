@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './searchItem.css';
 import {formatTime} from "../../utils/utils";
 
@@ -11,7 +11,7 @@ function SearchListItem(props) {
     <li className={isSelected ? `active-song` : ``} onClick={ () => {clickHandler(index)}}>
       {index + 1 + ' . '}{title_short} {formatTime(duration)}
     </li>
-      <button onClick={onClickAdd}> Add </button>
+      <button onClick={onClickAdd}> <i className={`fa fa-plus`}></i></button>
     </div>
   );
 }

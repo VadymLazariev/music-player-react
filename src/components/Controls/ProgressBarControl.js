@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 function ProgressBarControl(props) {
   return (
     <div className="progress-container">
-      <span className="progress-value" onClick={ props.progressOnClick} style={{width: props.progress + '%'}}></span>
+      <span className="progress-value" onClick={props.progressOnClick} style={{width: props.progress + '%'}}>
+      </span>
     </div>
   );
 }
@@ -13,5 +14,6 @@ function ProgressBarControl(props) {
 export default ProgressBarControl;
 
 ProgressBarControl.propTypes = {
-  handleClick: PropTypes.func
+  handleClick: PropTypes.func.isRequired,
+  progress: PropTypes.number.isRequired,
 };

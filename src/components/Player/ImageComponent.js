@@ -13,5 +13,5 @@ function ImageComponent(props) {
 export default ImageComponent;
 
 ImageComponent.propTypes = {
-  img: PropTypes.string
+  img: PropTypes.string.isRequired
 };

@@ -155,12 +155,13 @@ export default connect(mapStateToProps, {
   randomize
 })(PlayerContainer);
 
+
 ImageComponent.propTypes = {
-  currentTrack:PropTypes.object.isRequired,
-  progress:PropTypes.number.isRequired,
-  isPlaying:PropTypes.bool.isRequired,
-  userPlayList:PropTypes.array.isRequired,
-  index:PropTypes.number.isRequired,
-  searchValue:PropTypes.string.isRequired,
-  searchPlayList:PropTypes.array.isRequired
+  currentTrack: PropTypes.object.isRequired,
+  progress: PropTypes.number.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  userPlayList: PropTypes.array.isRequired,
+  index: PropTypes.number.isRequired,
+  searchValue: PropTypes.string.isRequired,
+  searchPlayList: PropTypes.array.isRequired
 };
