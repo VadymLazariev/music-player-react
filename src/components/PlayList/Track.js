@@ -2,7 +2,6 @@ import React from 'react';
 import './track.css';
 import {formatTime} from "../../utils/utils";
 import PropTypes from 'prop-types';
-import PlayList from "./PlayList";
 
 function Track(props) {
   const {isSelected, clickHandler, index, title_short, duration, onClickRemove} = props;
