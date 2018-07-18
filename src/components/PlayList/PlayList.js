@@ -30,10 +30,10 @@ function PlayList(props) {
 }
 
 PlayList.propTypes ={
-  handleClick: PropTypes.func,
-  currentSongIndex: PropTypes.number,
-  tracks: PropTypes.array,
-  isSelected: PropTypes.bool
+  handleClick: PropTypes.func.isRequired,
+  currentSongIndex: PropTypes.number.isRequired,
+  tracks: PropTypes.array.isRequired,
+  isSelected: PropTypes.bool.isRequired
 };
 
 export default PlayList;

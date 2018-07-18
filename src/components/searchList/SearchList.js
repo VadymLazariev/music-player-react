@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './searchList.css';
 import PropTypes from 'prop-types';
 import SearchListItem from "./SearchItem";
 
-let smth = false
 
 function SearchList(props) {
   const {playlist, handleClick, currentSongIndex, tracks, handleAddOnClick, isSearch} = props;
@@ -24,7 +23,8 @@ function SearchList(props) {
                 onClickAdd={() => {
                   handleAddOnClick(track)
                 }}
-                clickHandler={() => {}}
+                clickHandler={() => {
+                }}
               />
             ))
           }
