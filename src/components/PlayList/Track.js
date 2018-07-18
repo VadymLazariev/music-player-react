@@ -9,9 +9,8 @@ function Track(props) {
     <div>
     <li className={isSelected ? `active-song` : ``} onClick={clickHandler}>
       {index + 1 + ' . '}{title_short} {formatTime(duration)}
-      <button onClick={onClickRemove}>remove</button>
     </li>
-
+      <button onClick={onClickRemove}>remove</button>
     </div>
   );
 }
