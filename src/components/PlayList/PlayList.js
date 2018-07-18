@@ -4,7 +4,7 @@ import './playList.css';
 import PropTypes from 'prop-types';
 
 function PlayList(props) {
-  const {handleClick,currentSongIndex,tracks,handleRemoveOnClick,isSearch} = props;
+  const {handleClick, currentSongIndex, tracks, handleRemoveOnClick, isSearch} = props;
   return (
     <div className={isSearch ? `hide` : `playlist-container`}>
       <div className="playlist">
@@ -18,8 +18,8 @@ function PlayList(props) {
                 id={track.id}
                 title_short={track.title}
                 duration={track.duration}
-                clickHandler={ () => handleClick(index)}
-                onClickRemove={ () => handleRemoveOnClick(currentSongIndex)}
+                clickHandler={() => handleClick(index)}
+                onClickRemove={() => handleRemoveOnClick(currentSongIndex)}
               />
             ))
           }
@@ -29,7 +29,7 @@ function PlayList(props) {
   );
 }
 
-PlayList.propTypes ={
+PlayList.propTypes = {
   handleClick: PropTypes.func.isRequired,
   currentSongIndex: PropTypes.number.isRequired,
   tracks: PropTypes.array.isRequired,
