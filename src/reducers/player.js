@@ -7,7 +7,6 @@ import {
   PROGRESS,
   ADD_TRACK,
   REMOVE_TRACK,
-  REPREAT_TRACK,
   RANDOMIZE_PLAYLIST
 } from '../actions/types'
 import tracks from "../assets/tracksMock"
@@ -19,7 +18,6 @@ const initialState = {
   index: 0,
   currentTrack: tracks.data[0],
   progress: 0,
-  isRepeating: false,
   isPlaying: false,
   isLoading: false,
   errors: null,
@@ -70,11 +68,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         userPlayList: [...state.userPlayList.slice(0, action.payload), ...state.userPlayList.slice(action.payload + 1)],
-      };
-    case  REPREAT_TRACK:
-      return {
-        ...state,
-        isRepeating: !action.payload,
       };
     case  RANDOMIZE_PLAYLIST: {
       console.log(...state.userPlayList);

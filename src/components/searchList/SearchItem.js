@@ -7,6 +7,7 @@ import PlayList from "../PlayList/PlayList";
 function SearchListItem(props) {
   const {id, playlist, isSelected, clickHandler, index, title_short, duration, onClickAdd} = props;
 
+
   const checkAddedTrack = () => {
     let isTrackAdded = false;
     playlist.map(track => {
@@ -16,6 +17,7 @@ function SearchListItem(props) {
     });
     return isTrackAdded;
   };
+
   return (
     <div>
       <li className={isSelected ? `active-song` : ``} onClick={() => {
@@ -24,13 +26,13 @@ function SearchListItem(props) {
         {index + 1 + ' . '}{title_short} {formatTime(duration)}
       </li>
       <button disabled={checkAddedTrack()} onClick={onClickAdd}>
-        <i className={!checkAddedTrack() ? `fa fa-plus` : `fa fa-minus`}></i>
+        <i className={!checkAddedTrack() ? `fa fa-plus` : `fa fa-minus`}> </i>
       </button>
     </div>
   );
 }
 
-PlayList.propTypes = {
+SearchListItem.propTypes = {
   id: PropTypes.number,
   playlist: PropTypes.array,
   isSelected: PropTypes.bool,
@@ -38,7 +40,7 @@ PlayList.propTypes = {
   index: PropTypes.number,
   title_short: PropTypes.string,
   duration: PropTypes.number,
-  onClickAdd:  PropTypes.func,
+  onClickAdd: PropTypes.func,
 };
 
 

@@ -16,7 +16,7 @@ function Track(props) {
   );
 }
 
-PlayList.propTypes = {
+Track.propTypes = {
   isSelected:PropTypes.bool,
   clickHandler:PropTypes.func,
   index:PropTypes.number,

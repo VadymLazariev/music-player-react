@@ -9,7 +9,7 @@ import ProgressBarControl from '../Controls/ProgressBarControl';
 import '../../../node_modules/font-awesome/css/font-awesome.min.css';
 import {connect} from 'react-redux';
 import {
-  getPlayList, play, pause, selectTrack, setProgress, removeTrack, addTrack, repeat, randomize
+  getPlayList, play, pause, selectTrack, setProgress, removeTrack, addTrack,randomize
 } from "../../actions/palyer";
 import SubControlContainer from "../Controls/SubControlContainer";
 import ImageComponent from "./ImageComponent";
@@ -56,8 +56,8 @@ class PlayerContainer extends Component {
     this.audio.play();
   };
   next = () => {
-    const {isRepeating, index, userPlayList} = this.props.player;
-    const nextIndex = isRepeating ? index : index < userPlayList.length - 1 ? index + 1 : 0;
+    const {index, userPlayList} = this.props.player;
+    const nextIndex = index < userPlayList.length - 1 ? index + 1 : 0;
     this.activateTrack(nextIndex);
     this.audio.src = userPlayList[nextIndex].preview;
     this.audio.play();
@@ -79,6 +79,9 @@ class PlayerContainer extends Component {
   };
   toggleMute = () => {
     this.audio.muted = !this.audio.muted;
+  };
+  toggleRepeat = () => {
+    this.audio.loop = !this.audio.loop;
   };
   togglePlaying = () => {
     if (!this.audio.src) {
@@ -117,7 +120,7 @@ class PlayerContainer extends Component {
                 <PlayerControl handleClick={this.toggleMute}
                                controlType={`control__small`}
                                fontAwesome={!this.audio.muted ? `fa fa-volume-up` : `fa fa-volume-down`}/>
-                <PlayerControl handleClick={this.props.repeat} controlType={`control__small`}
+                <PlayerControl handleClick={this.toggleRepeat} controlType={`control__small`}
                                fontAwesome={`fa fa-repeat`}/>
               </SubControlContainer>
             </Player>
@@ -150,7 +153,6 @@ export default connect(mapStateToProps, {
   removeTrack,
   setProgress,
   addTrack,
-  repeat,
   randomize
 })(PlayerContainer);
 

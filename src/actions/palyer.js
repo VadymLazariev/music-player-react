@@ -44,13 +44,6 @@ export const randomize = () => {
   }
 }
 
-export const repeat = () => {
-  return function (dispatch) {
-    dispatch({
-      type: REPREAT_TRACK,
-    });
-  }
-}
 
 
 export const removeTrack = id => ({
