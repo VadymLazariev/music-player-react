@@ -22,7 +22,6 @@ const initialState = {
   isRepeating: false,
   isPlaying: false,
   isLoading: false,
-  isAdded: false,
   errors: null,
 };
 
@@ -66,7 +65,7 @@ export default function (state = initialState, action) {
       };
     case ADD_TRACK:
       state.userPlayList.push(action.payload);
-      return {...state, isAdded: true};
+      return {...state};
     case  REMOVE_TRACK:
       return {
         ...state,

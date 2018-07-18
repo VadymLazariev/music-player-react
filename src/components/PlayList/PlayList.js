@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Track from './Track';
 import './playList.css';
 import PropTypes from 'prop-types';
@@ -30,10 +30,10 @@ function PlayList(props) {
 }
 
 PlayList.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  currentSongIndex: PropTypes.number.isRequired,
-  tracks: PropTypes.array.isRequired,
-  isSelected: PropTypes.bool.isRequired
+  handleClick: PropTypes.func,
+  currentSongIndex: PropTypes.number,
+  tracks: PropTypes.array,
+  isSelected: PropTypes.bool
 };
 
 export default PlayList;

@@ -130,7 +130,6 @@ class PlayerContainer extends Component {
 
         <SearchList playlist={userPlayList} isSearch={searchValue} handleAddOnClick={this.props.addTrack}
                     tracks={searchValue ? searchPlayList : []}/>
-
       </main>
     )
   } ;
@@ -157,11 +156,11 @@ export default connect(mapStateToProps, {
 
 
 ImageComponent.propTypes = {
-  currentTrack: PropTypes.object.isRequired,
-  progress: PropTypes.number.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  userPlayList: PropTypes.array.isRequired,
-  index: PropTypes.number.isRequired,
-  searchValue: PropTypes.string.isRequired,
-  searchPlayList: PropTypes.array.isRequired
+  currentTrack: PropTypes.object,
+  progress: PropTypes.number,
+  isPlaying: PropTypes.bool,
+  userPlayList: PropTypes.array,
+  index: PropTypes.number,
+  searchValue: PropTypes.string,
+  searchPlayList: PropTypes.array
 };

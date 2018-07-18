@@ -1,7 +1,8 @@
 import React from 'react';
 import './searchItem.css';
 import {formatTime} from "../../utils/utils";
-
+import PropTypes from 'prop-types';
+import PlayList from "../PlayList/PlayList";
 
 function SearchListItem(props) {
   const {id, playlist, isSelected, clickHandler, index, title_short, duration, onClickAdd} = props;
@@ -28,5 +29,17 @@ function SearchListItem(props) {
     </div>
   );
 }
+
+PlayList.propTypes = {
+  id: PropTypes.number,
+  playlist: PropTypes.array,
+  isSelected: PropTypes.bool,
+  clickHandler: PropTypes.func,
+  index: PropTypes.number,
+  title_short: PropTypes.string,
+  duration: PropTypes.number,
+  onClickAdd:  PropTypes.func,
+};
+
 
 export default SearchListItem;

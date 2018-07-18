@@ -14,6 +14,6 @@ function ProgressBarControl(props) {
 export default ProgressBarControl;
 
 ProgressBarControl.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  progress: PropTypes.number.isRequired,
+  handleClick: PropTypes.func,
+  progress: PropTypes.number,
 };

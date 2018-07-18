@@ -37,4 +37,5 @@ const mapStateToProps = store => {
   };
 };
 
+
 export default connect(mapStateToProps, {getPlayList, setSearchValue})(Search);

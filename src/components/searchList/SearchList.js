@@ -5,7 +5,7 @@ import SearchListItem from "./SearchItem";
 
 
 function SearchList(props) {
-  const {playlist, handleClick, currentSongIndex, tracks, handleAddOnClick, isSearch} = props;
+  const {playlist, tracks, handleAddOnClick, isSearch} = props;
 
   return (
     <div className={isSearch ? `searchList-container` : `hide`}>
